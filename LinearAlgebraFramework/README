@@ -1,0 +1,24 @@
+Linear Algebra Library
+
+1.) Implementing Matrix.h
+    - Adding, Subtracting, and Multiplying two matrices together
+    - Adding, Subtracting, and Multiplying a matrix with a scalar val
+    - Squaring two matrices.
+    - Displaying specific indexes in a matrix.
+
+1.2) Updated Matrix.h to only take integers, doubles, and floats only.
+
+2.) Implementing an inverse matrix.
+    - Purpose of an inverse of a matrix.
+    -> Using Gauss-Jordan elimination algorithm
+    
+    Ex) Considering a system of equations,
+        - a11x1 + a12x2 + a13x3 = b1
+        - a21x1 + a22x2 + a23x3 = b2
+        - a31x1 + a32x2 + a33x3 = b3
+    - To look at why we need this algorithm, as a good example
+      is to solve these kinds of linear systems of equations.
+    - Which this has three equations, and three unknowns,
+       the unknowns being x1, x2, and x3.
+    - Coefficient being the three equations represented as a11 - a33
+    - Output begin b1 - b3
