@@ -1,0 +1,114 @@
+==========================================================================
+    _              _                   _     
+   / \   _ __   __| |_ __ _____      _( )___ 
+  / _ \ | '_ \ / _` | '__/ _ \ \ /\ / /// __|
+ / ___ \| | | | (_| | | |  __/\ V  V /  \__ \
+/_/   \_\_| |_|\__,_|_|  \___| \_/\_/   |___/
+                                             
+ __  __                   _                      ____ _           _       
+|  \/  | ___  _ __   ___ | |_ ___  _ __   ___   / ___| |__   __ _(_)_ __  
+| |\/| |/ _ \| '_ \ / _ \| __/ _ \| '_ \ / _ \ | |   | '_ \ / _` | | '_ \ 
+| |  | | (_) | | | | (_) | || (_) | | | |  __/ | |___| | | | (_| | | | | |
+|_|  |_|\___/|_| |_|\___/ \__\___/|_| |_|\___|  \____|_| |_|\__,_|_|_| |_|
+                                                                          
+  ____                            _   _       _ _ 
+ / ___|___  _ ____   _______  __ | | | |_   _| | |
+| |   / _ \| '_ \ \ / / _ \ \/ / | |_| | | | | | |
+| |__| (_) | | | \ V /  __/>  <  |  _  | |_| | | |
+ \____\___/|_| |_|\_/ \___/_/\_\ |_| |_|\__,_|_|_|
+                                                  
+    _    _                  _ _   _               
+   / \  | | __ _  ___  _ __(_) |_| |__  _ __ ___  
+  / _ \ | |/ _` |/ _ \| '__| | __| '_ \| '_ ` _ \ 
+ / ___ \| | (_| | (_) | |  | | |_| | | | | | | | |
+/_/   \_\_|\__, |\___/|_|  |_|\__|_| |_|_| |_| |_|
+           |___/                                  
+
+==========================================================================
+
+For this assignment you will be given a working BRIDGES implementation that
+will display a graph of all cities in the continental US. Your job will be to
+create a "Convex Hull" that wraps the graph in the smallest convex polygon you
+can. Your code (which will be all in andrew.cc you can ignore main.cc) will
+be passed a graph (held in adjacency list format, with strings, the city
+names, for keys) and your goal will be to add edges to it (in bright blue for
+the upper hull and bright red for the lower hull) to wrap a convex hull around
+it.
+
+A convex polygon is defined as one that has no left turns in it as you go
+clockwise around it. Or another way of defining it is that from any point in a
+convex polygon you can see all of the points inside it.
+
+A "hull" just means it wraps all of the points in the graph, kind of like if
+you stretched a rubber band around a bunch of thumbtacks and released it to
+snap shut
+
+The Andrew's Monotone Chain algorithm is probably the easiest to implement and
+understand. Here's how it works:
+https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain
+
+There's a C++ implementation there you're free to plagiarize from if you think
+it'll help.
+
+We then compute first the upper hull and then the lower hull (which is the
+same but backwards). We will draw the upper hull in red and the lower hull in
+blue.
+
+Step 1) Sort all the points from left to right. Whatever is leftmost must be
+in the hull.
+
+Step 2) Add the first two leftmost points to the upper hull then move into the
+loop 
+
+Loop) Starting with i = 3 and going eastward to the last point: add the point
+to the upper hull. Then check to see if this causes a left turn to take place
+in the hull. We tell this by looking at the last three points -
+
+Example of a right hand turn as we go p0->p1->p2:
+		   p1
+		  /  \
+		 /    \
+	   p0     p2
+This is okay, so we move on to the next iteration of the loop
+
+Example of a left hand turn as we go p0->p1->p2:
+	   p0     p2
+	     \   /
+		  \ /
+		   p1
+This is not okay, so we delete ****P1**** (not P2!!!) and then WE CHECK AGAIN
+TO SEE IF THERE IS A LEFT TURN IN THE LAST THREE POINTS. We keep doing this
+until there is either a right turn, or there are only two points left (p0 and
+p2).
+
+Determining if there is a left turn or right turn is easy. The 2D crossproduct
+tells us if things are to the left or right.
+cross(p0,p1,p2) will return a positive number on a left turn, 0 on a co-linear
+(p0 ---- p1 ---- p2) result, and negative on a right turn.
+
+So basically as long as the cross of p0,p1,p2 is positive, delete p1 and
+continue until either it's negative, or you are down to just p0 and p2 in the
+upper hull. Then continue the loop.
+
+Step 3) Do the same as Step 1, except sort from right to left (use
+sort(vec.rbegin(),vec.rend()) to sort backwards easily).
+
+Step 4) Do the same as Step 2, except you will be adding to the lower_hull
+instead of the upper hull.
+
+Step 5) When you're done building the hulls, color all of the vertices in the upper
+hull red and make them big like this:
+        gr.getVertex(v)->setSize(40.0);
+        gr.getVertex(v)->setColor("red");
+(v is the name of the city)
+
+Then add a red edge between each of the vertices in the upper hull like this:
+            add_edge(gr,v,v2,3,"red");
+(v is the name of the city the edge will come from, v2 is the name of the city
+the edge will go to)
+
+Step 6) Do the same for the lower hull, except use blue instead of red
+
+The ends of each hull should be purple, rather than blue or red
+
+5 points for correctness, 5 points for rendering correctly on BRIDGES.
