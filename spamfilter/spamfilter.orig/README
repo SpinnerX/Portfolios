@@ -1,0 +1,72 @@
+Spamfilter v1.0 by Bob Boyer (rboyer@cs.ucsd.edu) and William Kerney (wkerney@cs.ucsd.edu)
+
+Introduction:
+This system takes incoming mail messages and determines if they're spam or not, using a somewhat
+sophisticated neural network. Currently, it classifies incoming messages with a 90-95% accuracy
+rate.
+
+How it works:
+We found a database of spam at the Machine Learning Center at UCI, which had 4800 emails 
+already classified as spam/not-spam via 57 predefined attributes. These attributes range
+from "frequency of the word 'money'" to "number of capital letters in a row". We trained
+a neural network, using this database, to classify a message as either "spam" or "not-spam".
+The neural network, for those who are interested, has 58 input units (counting bias), 13 hidden
+units, and one output unit (which is TRUE for spam, and FALSE for not-spam).
+
+An incoming mail message gets passed via .forward and .procmailrc to our filter, which strips
+the headers, generates the 57 attributes found in the database above, and runs it through the
+neural network. If the network finds it to be spam, the filter program places it in the mailbox
+designated for spam, otherwise it puts it in the mailbox designated for normal messages (which
+is usually /var/mail/<user>).
+
+You do not have to train the system on your own emails -- it uses the fixed attributes set out
+by Hopkins et al. from Hewlett-Packard in their UCI Machine Learning Database.
+(http://www.ics.uci.edu/~mlearn/MLSummary.html) Accuracy could, of course, be improved
+if you could train on your own mail messages, but it is not implemented.
+
+
+Installation:
+This system has been tested on Solarius 7, only. It should run on linux, and can't run on Windows
+at all. The source is all ANSI C++, CSH script and Java, so it should be portable to any operating
+system that supports these standards. Java 1.2 or better needs to be installed on the system.
+
+Step 1) Gunzip/untar the file. In this example, we'll put it in ~/spamfilter
+Step 2) Build the executables with "make". 
+Step 3) Edit .forward and .procmailrc, changing USERNAME to your username. Make sure the
+paths to procmail and the mailboxes are all correct.
+Step 4) Choose which option in .procmailrc you want to use. Safest is Option 2, recommended
+is Option 1. Option 3 is for people who hate spam so much they are willing to risk losing
+good mails.
+current .procmailrc)
+Step 5) Verify the system works. Run "filter" and type in a sample message, with a to:, from:,
+subject:, blank line, and body. ^D to end. Use normal words to verify it works to classify
+not-spam, and use lots of "MAKE MONEY FAST $$$$$$$$$" type strings to verify it works to 
+classify spam. Look at the debug.out file to see if any errors occured. Ignore NaN in the output,
+since the neural net handles them correctly.
+Step 6) Run "filter < sampleSpamMessage" and "filter < sampleGoodMessage" to additionally
+verify correctness. Filter will put the messages into local files called "spam" and "goodmail"
+which you can delete safely.
+Step 7) If the system didn't work, run jmail.script individually and see if any Java exceptions
+occurred. The most common problem is not having Java 1.2 (or better) installed. Or if it is
+installed, having "java" run an older version. "java -version" tells you what you're using
+by default. Edit the jmail.script file to point java to a 1.2+ interpreter.
+Step 8) Copy the .forward file to ~/.forward (backing up what you have there already)
+Step 9) Copy the .procmailrc to ~/.procmailrc (or just add the lines to the bottom of your
+Step 10) Mail yourself and see if the message is put into the mailbox you thought it would,
+and is classified correctly.
+
+For questions or comments, mail both of the authors above.
+
+If you want to modify the program, all the source is available, although somewhat unwieldly
+to deal with. The accuracy isn't very good because the training set wasn't very amenable
+to personal emails (it looks for words like "George" and "650" when deciding if something
+is a spam or not!) Anyone who wishes to extend this program to be able to train on a local
+mailbox to learn the specific habits of the user is invited to contact the authors.
+
+------------------------------------
+Version history
+------------------------------------
+
+Version 1.0 (12/13/00):
+Initial public release.
+
