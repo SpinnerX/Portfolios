@@ -1,4 +1,4 @@
-Spamfilter v1.0 by Bob Boyer (rboyer@cs.ucsd.edu) and William Kerney (wkerney@cs.ucsd.edu)
+Spamfilter v1.0
 
 Introduction:
 This system takes incoming mail messages and determines if they're spam or not, using a somewhat
