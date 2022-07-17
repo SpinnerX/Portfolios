@@ -1,2 +1,2 @@
 # portfolios
-My personal projects that I had developed and academic projects I continue working on to update and improve. Quote: Code can always be improved.
+This Github repo contains projects I have done, academically and personally. Displaying the applications of concepts, and usage that I have learned to apply into my own projects. In which have been very useful, when developing these personal projects into fruition.
