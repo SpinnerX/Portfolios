@@ -15,6 +15,23 @@ public:
     
     _Tp getRange(_Tp width) { return getRange(-width * 0.5f, width * 0.5); }
 
+    static _Tp getRandRange(_Tp width){
+        constexpr int32_t maxValue = 10000;
+        const int32_t half = maxValue / 2;
+        constexpr float div = 1.0 / double(maxValue);
+
+        const double value = (rand() % maxValue - half) * div * width;
+        return value;
+    }
+
+    static _Tp getRandUnder(_Tp max){
+        constexpr int32_t max_value = 10000;
+        constexpr int32_t half = max_value / 2;
+        constexpr _Tp div = 1.0 / _Tp(max_value);
+        const _Tp val = (rand() % max_value) * div * max;
+        return val;
+    }
+
     std::random_device device;
     std::uniform_int_distribution<_Tp> distribution;
     std::mt19937 genet;
