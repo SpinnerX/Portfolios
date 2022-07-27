@@ -109,6 +109,8 @@ Vec2 will have object of Coords
 */
 template<typename _Tp>
 class Vec2{
+    const double PI = 3.141592653;
+    const float PI_f = 3.141592653f;
 public:
     Vec2();
     Vec2(_Tp x, _Tp y) {
@@ -173,6 +175,12 @@ public:
     static _Tp angle(const Vec2<_Tp> v1, Vec2<_Tp> v2){
         const _Tp dot = Coords<_Tp>::dot(v1.coord, v2.coord);
         const _Tp det = Coords<_Tp>::det(v1.coord, v2.coord);
+        return std::atan2(det, dot);
+     }
+
+     static _Tp getVec2Angle(const Vec2<_Tp>& v1, const Vec2<_Tp>& v2){
+        const _Tp dot = v1.dot(v2.coordinates());
+        const _Tp det = v1.det(v2,coordinates());
         return std::atan2(det, dot);
      }
 
