@@ -113,4 +113,4 @@ http://nifty.stanford.edu/2016/franke-mountain-paths/
 The starting source code is from the BRIDGES team at UNCC:
 http://bridgesuncc.github.io/
 
-![alt text](~/Documents/images/bridges_mountains/Korea_Image.png)
+![plot](~/Documents/images/bridges_mountains/Korea_Image.png)
