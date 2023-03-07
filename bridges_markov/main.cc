@@ -123,9 +123,8 @@ int main() {
 
 			//Look up index in the vector using a hash table
 			size_t index = 0;
-			if (hash.count(word)) { //Exists already
-				index = hash[word];
-			}
+			// Exists already
+			if (hash.count(word)) index = hash[word];
 			else { //Make the new vertex
 				Vertex v = {word};
 				graph.push_back(v);
@@ -153,17 +152,20 @@ int main() {
 						break;
 					}
 				}
-				if (!found) { //This is the first time the new word follows the old word
-					prev_v.edges.push_back({word,1});
-				}
+				// This is the first time the new word follows the old word
+				if (!found) prev_v.edges.push_back({word,1});
+
 				last_index = index;
 			}
 		}
 	}
+
 	cout << "1. Print Graph and Quit\n";
 	cout << "2. Generate Random Lyrics\n";
 	cout << "3. View on BRIDGES\n";
+
 	int choice = read();
+	
 	if (choice == 1) {
 		for (const Vertex &v : graph) {
 			cout << v;
@@ -195,6 +197,7 @@ int main() {
 				break;
 			}
 		}
+		
 		string temp = cur.word;
 		first_cap(temp);
 		cout << temp;
