@@ -28,3 +28,5 @@ Applying end-to-end testing, for testing output of the framework, such as additi
 
 # Data Structures Folder
 Here, in this folder are just some data structures implementation both implemented during data structures, and discrete mathematics. While also utilizing templates.
+
+Including topics that were covered in discrete mathematics, such as set theory, demorgans law, and graph theory implemented in C++.
