@@ -1,0 +1,102 @@
+===========================
+ _   _    _    ____  _   _ 
+| | | |  / \  / ___|| | | |
+| |_| | / _ \ \___ \| |_| |
+|  _  |/ ___ \ ___) |  _  |
+|_| |_/_/   \_\____/|_| |_|
+                           
+===========================
+
+/*
+ * Hash Table 
+ * Hash Table
+ * Super Cool
+ *
+ * Hash Table
+ * Hash Table
+ * Let's have Fun!
+ */
+
+For this assignment, you will implement two hash tables and benchmark them
+extensively.
+You must implement four different commands:
+ INSERT - adds a number to the hash table
+ SEARCH - tests to see if a number is in the hash table
+ REMOVE - removes a number from the hash table
+ CHANGE - if a number is in the hash table, removes it and replaces it with another number
+
+The program should quit when cin becomes invalid or if the user types in a
+command other than the four above.
+
+Sample input 
+INSERT 7
+SEARCH 7
+INSERT 9
+INSERT 9
+REMOVE 9
+SEARCH 9
+CHANGE 9 1
+CHANGE 7 9
+SEARCH 9
+(Indicate there is no more data if you're doing this in the keyboard by
+hitting ctrl-d)
+
+Sample output
+7 IN TABLE
+9 NOT IN TABLE
+9 IN TABLE
+
+The first hash table you write must use linear probing. The second hash table
+you write must use chaining, either with linked lists or binary search trees.
+You can use the standard library <list> class or <set> class to do this, but
+otherwise I want you to write the hash table yourself. Don't use
+unordered_map, obviously, as that'd be super cheating.
+The third hash table you must write will use Double Hashing. The
+implementation here has a "hash table" abstract class that does nothing, that
+you inherit from to implement specific functionality.
+
+After you pass the test cases (5 points) then the next 15 points are from
+benchmarking your three implementations intensively and from writing a short
+report about a page or so in length in addition to the graphs, talking about
+which implementation is faster, and maybe one of the implementations is faster
+at one thing, and another at another, or at different sizes and different
+loads.
+
+You must run your code in each of the three modes (Linear, Double, Chaining)
+for the following sizes: 1k, 2k, 4k, 8k, 16k, 32k, 64k, 128k, 256k, 512k, 1M
+(if your hash table can't be exactly that size, pick a size closest to it).
+Show the running time for a mixture of operations (insert, search, etc.) at
+the following loads: .3, .5, .7, .9. (Yes, this means you need to do 120
+runs.) Graph the results however you want so that I can clearly see the
+difference in running time between the different implementations. You can use
+Excel or Gnuplot to generate these graphs. Write a paragraph or two of
+analysis discussing which of the approaches are best and saying which one
+you'd prefer to use. Submit this report on Canvas.
+
+You could - in theory - do this by hand, but the better way of doing it is to
+learn how to automate your life! This is a very important homework assignment
+for this reason. Don't do tedious drudge work! Learn to write programs to
+automate repetitive behavior. You can do this however you want, but I have
+given you a couple examples that will be helpful:
+
+A) generator.cc is a sample source code that will generate input files of
+different sizes. You'll need to customize it to support your needs. Right now
+it's set to make a bunch of random numbers, insert them into the hash table,
+delete half of them, and search for all of them.
+
+B) timing_script.sh is a shell script that will run your code in both modes,
+on all inputfiles that you make with a certain name (right now it's set to run
+your code on all files that begin with "inputsearch" (the * means match). So
+when you're ready to test the relative performance of inserting+searching
+(i.e. after you have generated all 10 inputsearch sizes) then run the shell
+script and it will spit out all your timing data for you
+
+You then copy/paste that timing data into Excel, average the five runs
+together, and then graph the results. Use the numbers and the graphs to see
+which version of hash tables is faster, or faster in which circumstances, and
+write this up into a report that you will attach on Canvas.
+
+C) Alternatively, you could do it all programmatically inside main.cc, using
+the <chrono> library to time your code, and using a vector with randomly made
+numbers to do your inserts and searches, then outputting the timings for each
+of the different sizes
