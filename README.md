@@ -25,3 +25,6 @@ Forest when Wind is being generated in the simulation
 This image shows how many test cases if the framework passing, for deployment.
 Applying end-to-end testing, for testing output of the framework, such as addition, subtraction, multiplication, and other basic features of matrices arithmetic.
 ![LinearAlgebraTests](https://user-images.githubusercontent.com/56617292/189499266-063e316d-35ba-4250-bb91-f9f78a9379d6.png)
+
+# Data Structures Folder
+Here, in this folder are just some data structures implementation both implemented during data structures, and discrete mathematics. While also utilizing templates.
