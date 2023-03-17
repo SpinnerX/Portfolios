@@ -19,6 +19,9 @@ Forest when Wind is being generated in the simulation
 ![RandomForestWind](https://user-images.githubusercontent.com/56617292/189499041-1a76a3a3-6063-4d45-ae9e-ac1fc99b70f9.png)
 
 # Hand-Gesture Detection
+
+When implementing this hand detection, the idea was using this implementation for ROS development. To do interaction with hardware, such as when we detect a users hand, the robot would be able to detect through this detection.
+
 ![Hand-Gesture-Recognition_Image](https://user-images.githubusercontent.com/56617292/189499141-62c6bb51-c6db-42e3-943a-c307299a75ee.png)
 
 # Linear Algebra Framework
