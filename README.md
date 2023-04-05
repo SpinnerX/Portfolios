@@ -1,4 +1,10 @@
 # portfolios
+
+-- UPDATE --
+Date: January 25th, 2023
+* This is an outdated portfolio repo. 
+* Plan to implement more in depth projects that would be considered useful, and have their own usefulness in their respective focuses.
+
 This Github repo contains projects I have done, academically and personally. Displaying the applications of concepts, and usage that I have learned to apply into my own projects. In which have been very useful, when developing these personal projects into fruition.
 
 UPDATE (Jan 4th, 2023)
