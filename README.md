@@ -2,6 +2,7 @@
 
 -- UPDATE --
 Date: January 25th, 2023
+* Portfolio - 2019 to 2023
 * This is an outdated portfolio repo. 
 * Plan to implement more in depth projects that would be considered useful, and have their own usefulness in their respective focuses.
 
